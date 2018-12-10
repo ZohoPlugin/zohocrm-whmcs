@@ -55,8 +55,7 @@ function zoho_crm_ConfigOptions()
 function zoho_crm_CreateAccount(array $params)
 {
 	$addonid;
-	//$test = $params['configoption2'];
-	$test = "b3ee75bbcefc384a97a099920900f332";
+	$test = $params['configoption2'];
 	try {
 	$curl = curl_init();
 	$arrClient = $params['clientsdetails'];
@@ -73,7 +72,7 @@ function zoho_crm_CreateAccount(array $params)
 	else{
 	    $addonid = 647;
 	}
-	$noofusers = $params['configoptions']['No of users'];
+	$noofusers = $params['configoptions']['No. of users'];
 	 
 	$bodyArr = json_encode(array(
 		//'JSONString' => array(
@@ -222,8 +221,7 @@ function zoho_crm_AdminServicesTabFields(array $params)
    try{
 	$url = 'https://accounts.zoho.com/apiauthtoken/create?SCOPE=ZohoPayments/partnerapi';
 	$cli = Capsule::table('zoho_crm')->where('domain',$params['domain'])->first();
-	//$authtoken = $params['configoption2'];
-	$authtoken = "b3ee75bbcefc384a97a099920900f332";
+	$authtoken = $params['configoption2'];
 	if(!$authtoken == '') {
 	$authtoken = '<h2 style="color:green;">Authenticated</h2>';
 	}
@@ -231,19 +229,11 @@ function zoho_crm_AdminServicesTabFields(array $params)
 	$authtoken = '<a href="'.$url.'" type="submit" target="_blank"> Click here </a> (Call only once for authenticating)';
 	}
 	$response = array();
-	/*$verificationStatus;
-	if (strcmp("true",$cli->isverified) == 0) {
-		 $verificationStatus = '<b style=color:green>Verified</b>';
-	} else {
-		 $verificationStatus = '<b style=color:red>Not Verified</b>';
-	}*/
-	 
 	return array(
 	     'Authenticate' => $authtoken,
-	     'Client Control Panel' => '<a href="'.$cli->url.'" target=_blank>Click here</a>',
 	     'Super Administrator' => $cli->superAdmin,
 	     'ZOID' => $cli->zoid,
-	     'URL to manage customers' => '<a href="https://payments.zoho.com/zstore#customers" target="blank">Click here</a>'
+	     'URL to Manage Customers' => '<a href="https://payments.zoho.com/store/reseller.do?profileId='.$cli->profileid.'" target=_window>Click here</a>'
 	    );
 	 
     } catch (Exception $e) {
@@ -338,7 +328,6 @@ function zoho_crm_ClientArea(array $params)
 	    'tabOverviewReplacementTemplate' => $templateFile,
 	    'templateVariables' => array(
 	     'crmUrl' => 'https://crm.zoho.com'
-	     //'panelUrl' => $urlToPanel
 	    ),
 	);
     } catch (Exception $e) {
