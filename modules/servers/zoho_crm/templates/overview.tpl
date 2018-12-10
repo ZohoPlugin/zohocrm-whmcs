@@ -254,8 +254,6 @@
 <div class="row">
     <div class="col-sm-4">
         <a href={$crmUrl} target="_blank"><button class="btn btn-default btn-block">Go to CRM</button></a><br>
-        <a href={$panelUrl} target="_blank"><button class="btn btn-default btn-block">Go to Control Panel</button></a>
-
     </div>
 
     {if $packagesupgrade}
