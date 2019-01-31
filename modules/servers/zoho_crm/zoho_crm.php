@@ -171,7 +171,7 @@ function zoho_crm_CreateAccount(array $params)
         			  $pdo->rollBack();
         		  }
 	 
-    		  return array ('success' => 'CRM Org has been created.');
+    		  return array ('success' => 'CRM Org has been created successfully.');
     		    }
     		    else if(($result == 'success') && (isset($respOrgJson->ERRORMSG))) {
     		        return 'Failed  ->  '.$respOrgJson->ERRORMSG;
